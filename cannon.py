@@ -1,8 +1,6 @@
 
 import numpy as np
 import random
-import time
-import cv2
 import math
 
 class Cannon:
@@ -20,7 +18,7 @@ class Cannon:
         # you can play with this
         self.grav = 4.0
         self.dt = .01 
-        self.damp = 1 
+        self.damp = 0 #probably set this to 0 for most applications
 
     # very basic physics
     def restart(self):
@@ -34,7 +32,8 @@ class Cannon:
         self.x_pos = self.x_pos + self.dt * self.x_vel
         self.y_pos = self.y_pos + self.dt * self.y_vel
         self.x_vel = self.x_vel + self.dt * (self.grav - (self.damp * self.x_vel))
-        self.y_vel = self.y_vel + self.dt * (self.grav - (self.damp * self.y_vel))
+        self.y_vel = self.y_vel + self.dt * self.damp * self.x_vel
+        #self.y_vel = self.y_vel + self.dt * (self.grav - (self.damp * self.y_vel))
         print('self.x_pos')
         print(self.x_pos)
         print('self.y_pos')
@@ -110,22 +109,7 @@ class Cannon:
         return math.sqrt(self.x_vel ** 2 + self.y_vel ** 2)
 
 if __name__ == "__main__":
-    print('thsdlkfj')
     k = Cannon()
-    img = np.zeros([28,28,3])
-    length = 1000
-    x, y = k.generate_28x28(1, length)
-    for i in xrange(length):
-        img[:,:,0] = x[0,i,:].reshape(28,28)
-        img[:,:,1] = x[0,i,:].reshape(28,28)
-        img[:,:,2] = x[0,i,:].reshape(28,28)
-        cv2.imshow('image', img)
-        cv2.waitKey(0)
-        print(k.x_pos)
-        print(k.y_pos)
-        print(k.speed())
-    print(img.shape)
-    cv2.destroyAllWindows()
 
 
 
