@@ -4,5 +4,5 @@ Simple dynamical systems to test machine learning algorithms. In the past I have
 # Cannon
 Here is the little gif I made of the simulation. It produces 28x28 = 784 vectors (Because thats the same size as mnist shhhh).
 
-
+![](https://github.com/loliverhennigh/dynamical-systems-for-machine-learning/blob/master/examples/animation.gif)
 
